@@ -1,6 +1,6 @@
 # Powershell_Password_Encryption
 simple password encryption to be utilized in powershell scripts
-<#
+
 How to Use:
 
 1. Run above
@@ -22,4 +22,3 @@ $Secure  = <Contents of Encrypted.txt> | ConvertTo-SecureString -Key $key
 
 Where ever the pasword is needed, use $secure in it's place
 
-#>
