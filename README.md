@@ -12,9 +12,9 @@ Utilizing In Code:
 
 In the script where you want to use the encrypted password, you can do the following:
 
-[byte[]]$key = get-content $PSScriptRoot\key.txt
+$key = get-content $PSScriptRoot\key.txt
 or
-[byte[]]$key = ("<Contents of key.txt>" -split "`r`n") 
+$key = ("<Contents of key.txt>" -split "`r`n") 
 
 $Secure = Get-Content $PSScriptRoot\Encrypted.txt | ConvertTo-SecureString -Key $key
 or
