@@ -12,13 +12,29 @@ Utilizing In Code:
 
 In the script where you want to use the encrypted password, you can do the following:
 
-$key = get-content $PSScriptRoot\key.txt
-or
-$key = ("<Contents of key.txt>" -split "`r`n") 
+$key = get-content $PSScriptRoot\key.txt or $key = (<contents seperated by commas>) 
 
-$Secure = Get-Content $PSScriptRoot\Encrypted.txt | ConvertTo-SecureString -Key $key
-or
-$Secure  = <Contents of Encrypted.txt> | ConvertTo-SecureString -Key $key
+$pwd = Get-Content $PSScriptRoot\Encrypted.txt  
+$EncryptedPassword = ConvertTo-SecureString $pwd -AsPlainText -Force
+$securePassword = ConvertFrom-SecureString $EncryptedPassword -Key $key
 
+$credential = New-Object System.Management.Automation.PSCredential ("domain\username", $securePassword)
 Where ever the pasword is needed, use $secure in it's place
 
+--------------------- EXAMPLE ---------------------
+
+
+$key= (223,
+91,
+89,
+67,
+21,
+202,
+250,
+88,
+45)
+
+$pwd = Get-Content $PSScriptRoot\Encrypted.txt  
+$securePassword = ConvertFrom-SecureString $EncryptedPassword -Key $key
+
+$credential = New-Object System.Management.Automation.PSCredential ("domain\username", $securePassword)
