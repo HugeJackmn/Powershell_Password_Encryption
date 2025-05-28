@@ -17,7 +17,6 @@ $key = get-content $PSScriptRoot\key.txt or $key = (<contents seperated by comma
 $pwd = Get-Content $PSScriptRoot\Encrypted.txt  
 $EncryptedPassword = ConvertTo-SecureString $pwd -AsPlainText -Force
 $securePassword = ConvertFrom-SecureString $EncryptedPassword -Key $key
-$securePassword = ConvertTo-SecureString $securePassword -AsPlainText -Force
 
 $credential = New-Object System.Management.Automation.PSCredential ("domain\username", $securePassword)
 Where ever the pasword is needed, use $secure in it's place
@@ -37,5 +36,6 @@ $key= (223,
 
 $pwd = Get-Content $PSScriptRoot\Encrypted.txt  
 $securePassword = ConvertFrom-SecureString $EncryptedPassword -Key $key
+$securePassword = ConvertTo-SecureString $securePassword -AsPlainText -Force
 
 $credential = New-Object System.Management.Automation.PSCredential ("domain\username", $securePassword)
